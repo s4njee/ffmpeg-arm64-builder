@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ffmpeg-builder
+    runs-on: ffmpeg-arm64-builder
     env:
       CFLAGS: -O2 -pipe -fno-lto
       CXXFLAGS: -O2 -pipe -fno-lto
