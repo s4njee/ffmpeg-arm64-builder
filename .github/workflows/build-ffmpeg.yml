@@ -33,7 +33,7 @@ jobs:
 
           cd dolby_vision
           cargo install cargo-c
-          cargo cinstall --release --locked \
+          cargo cinstall --release \
           --prefix="../ffmpeg_build.user" \
           --libdir="../ffmpeg_build.user"/lib \
           --includedir="../ffmpeg_build.user"/include
@@ -46,9 +46,9 @@ jobs:
           cd hdr10plus_tool
           rm -rf ffmpeg_build.user && mkdir ffmpeg_build.user || exit
           source "$HOME/.cargo/env" # for good measure
-
+          
           cd hdr10plus || exit
-          RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --locked --offline \
+          RUSTFLAGS="-C target-cpu=native" cargo cinstall --release \
                 --prefix="../ffmpeg_build.user" \
                 --libdir="../ffmpeg_build.user"/lib \
                 --includedir="../ffmpeg_build.user"/include
@@ -136,7 +136,7 @@ jobs:
             -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" \
             -DCMAKE_BUILD_TYPE=Release \
             -DBUILD_DEC=OFF \
-            -DENABLE_AVX512=ON \
+            -DENABLE_AVX512=OFF \
             -DCOVERAGE=OFF -DLIBDOVI_FOUND=1 \
             -DLIBHDR10PLUS_RS_FOUND=1 \
             -DBUILD_SHARED_LIBS=OFF ..
