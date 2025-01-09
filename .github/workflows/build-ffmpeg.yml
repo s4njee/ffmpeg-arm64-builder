@@ -62,7 +62,7 @@ jobs:
           git clone --depth 1 https://github.com/xiph/ogg.git
           cd ogg
           ./autogen.sh
-          ./configure --prefix="$HOME/ffmpeg_build" --disable-shared  --build=aarch64-linux-gnu \
+          ./configure --prefix="$HOME/ffmpeg_build" --disable-shared  --build=aarch64-linux-gnu
           make -j$(nproc)
           make install
           cd ..
@@ -125,7 +125,7 @@ jobs:
             --prefix="$HOME/ffmpeg_build" \
             --disable-shared \
             --enable-static
-            --build=aarch64-linux-gnu \
+            --build=aarch64-linux-gnu 
           make -j$(nproc)
           make install
           cd ..
