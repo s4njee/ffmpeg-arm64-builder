@@ -149,7 +149,7 @@ jobs:
             -DCOVERAGE=OFF -DLIBDOVI_FOUND=1 \
             -DLIBHDR10PLUS_RS_FOUND=1 \
             -DBUILD_SHARED_LIBS=OFF ..
-          PATH="$HOME/bin:$PATH" make -j$(nproc)
+          PATH="$HOME/bin:$PATH" make -j2
           make install
           cd ../..
 
@@ -163,7 +163,7 @@ jobs:
             -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
             -DENABLE_SHARED=off \
             -DHIGH_BIT_DEPTH=ON ../../source
-          PATH="$HOME/bin:$PATH" make -j$(nproc)
+          PATH="$HOME/bin:$PATH" make -j2
           make install
       - name: Build kvazaar
         run: |
@@ -190,7 +190,7 @@ jobs:
             --bindir="$HOME/bin" \
             --enable-static \
             --enable-pic
-          PATH="$HOME/bin:$PATH" make -j$(nproc)
+          PATH="$HOME/bin:$PATH" make -j2
           make install
           cd ..
 
@@ -200,7 +200,7 @@ jobs:
           cd opus
           ./autogen.sh
           ./configure --prefix="$HOME/ffmpeg_build" --disable-shared  --build=aarch64-linux-gnu 
-          make -j$(nproc)
+          make -j2
           make install
           cd ..
 
@@ -210,7 +210,7 @@ jobs:
           cd fdk-aac
           autoreconf -fiv
           ./configure --prefix="$HOME/ffmpeg_build" --disable-shared   --build=aarch64-linux-gnu 
-          make -j$(nproc)
+          make -j2
           make install
           cd ..
 
@@ -224,7 +224,7 @@ jobs:
             --default-library=static .. \
             --prefix "$HOME/ffmpeg_build" \
             --libdir="$HOME/ffmpeg_build/lib"
-          ninja
+          ninja -j2
           ninja install
           cd ../..
 
@@ -239,7 +239,7 @@ jobs:
             --disable-unit-tests \
             --enable-vp9-highbitdepth \
             --as=yasm
-          PATH="$HOME/bin:$PATH" make -j$(nproc)
+          PATH="$HOME/bin:$PATH" make -j2
           make install
           cd ..
 
@@ -253,7 +253,7 @@ jobs:
             -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
             -DENABLE_TESTS=OFF \
             -DENABLE_NASM=on ../aom
-          PATH="$HOME/bin:$PATH" make -j$(nproc)
+          PATH="$HOME/bin:$PATH" make -j2
           make install
           cd ..
 
@@ -287,7 +287,7 @@ jobs:
             --enable-static \
             --pkg-config-flags="--static" \
             --disable-shared
-          make -j$(nproc)
+          make -j2
           ./ffmpeg -version
 
       - name: Package FFmpeg
