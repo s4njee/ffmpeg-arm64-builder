@@ -17,6 +17,12 @@ jobs:
       LDFLAGS: -O2 -pipe -fno-lto
 
     steps:
+      - name: Setup build environment
+        run: |
+          echo "PKG_CONFIG_PATH=$HOME/ffmpeg_build/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
+          echo "PATH=$HOME/ffmpeg_build/bin:$PATH" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=$HOME/ffmpeg_build/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
+
       - name: Install Dependencies
         run: |
           sudo apt-get update
