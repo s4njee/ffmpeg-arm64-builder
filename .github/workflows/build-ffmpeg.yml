@@ -84,12 +84,15 @@ jobs:
 
       - name: Build LAME
         run: |
-          git clone --depth 1 https://github.com/zlargon/lame.git
-          cd lame
+          wget https://downloads.sourceforge.net/project/lame/lame/3.100/lame-3.100.tar.gz
+          tar xzf lame-3.100.tar.gz
+          cd lame-3.100
+
+          # Run configure with modified flags
           ./configure --prefix="$HOME/ffmpeg_build" \
-            --build=aarch64-linux-gnu \
             --enable-nasm \
             --disable-shared
+
           make -j$(nproc)
           make install
           cd ..
