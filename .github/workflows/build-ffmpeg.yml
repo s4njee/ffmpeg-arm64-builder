@@ -116,7 +116,7 @@ jobs:
           cd harfbuzz
           mkdir build && cd build
           meson setup --prefix="$HOME/ffmpeg_build" --default-library=static ..
-          ninja -j2
+          ninja -j1
           ninja install
           cd ../..
 
