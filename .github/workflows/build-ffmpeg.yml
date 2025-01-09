@@ -21,7 +21,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libdav1d-dev libaom-dev libfdk-aac-dev libvpx-dev libopus-dev libx264-dev libx265-dev zip meson \
-            nasm autogen automake libtool libfreetype6-dev libfontconfig1-dev libfribidi-dev libssl-dev libpulse-dev alsa-source libasound2-dev
+            nasm autoconf autogen automake libtool libfreetype6-dev libfontconfig1-dev libfribidi-dev libssl-dev libpulse-dev alsa-source libasound2-dev \
+            build-essential crossbuild-essential-arm64
       - name: Build HDR Stuff
         run: |
           curl https://sh.rustup.rs -sSf | sh -s -- -y
