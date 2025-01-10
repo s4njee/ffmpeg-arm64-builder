@@ -131,7 +131,12 @@ jobs:
           cd multicoreware*/build/linux
           PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" \
             -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" \
-            -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DENABLE_NEON_DOTPROD=OFF \
+            -DENABLE_NEON_I8MM=OFF \
+            -DENABLE_SVE=OFF \
+            -DENABLE_SVE2=OFF \
+            -DCMAKE_C_FLAGS="-march=armv8-a" \
+            -DCMAKE_CXX_FLAGS="-march=armv8-a" \
             -DENABLE_SHARED=off \
             -DHIGH_BIT_DEPTH=ON ../../source
           PATH="$HOME/bin:$PATH" make -j2
