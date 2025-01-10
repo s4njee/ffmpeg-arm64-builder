@@ -134,7 +134,7 @@ jobs:
           PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
             --prefix="$HOME/ffmpeg_build" \
             --disable-shared \
-            --enable-static
+            --enable-static \
             --build=aarch64-linux-gnu 
           make -j$(nproc)
           make install
