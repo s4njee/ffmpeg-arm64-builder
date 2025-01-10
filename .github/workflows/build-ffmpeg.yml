@@ -12,9 +12,9 @@ jobs:
   build:
     runs-on: ffmpeg-arm64-builder
     env:
-      CFLAGS: -O2 -pipe -fno-lto
-      CXXFLAGS: -O2 -pipe -fno-lto
-      LDFLAGS: -O2 -pipe -fno-lto
+      CFLAGS: -O2 -pipe -fno-lto -march=armv8-a
+      CXXFLAGS: -O2 -pipe -fno-lto -march=armv8-a
+      LDFLAGS: -O2 -pipe -fno-lto -march=armv8-a
 
     steps:
       - name: Setup build environment
@@ -132,9 +132,6 @@ jobs:
           PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" \
             -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" \
             -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
-            -DCMAKE_C_FLAGS="-march=armv8-a" \
-            -DCMAKE_CXX_FLAGS="-march=armv8-a" \
-            -DCROSS_COMPILE_ARM=1 \
             -DENABLE_SHARED=off \
             -DHIGH_BIT_DEPTH=ON ../../source
           PATH="$HOME/bin:$PATH" make -j2
