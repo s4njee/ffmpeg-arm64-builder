@@ -134,6 +134,7 @@ jobs:
             -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
             -DCMAKE_C_FLAGS="-march=armv8-a" \
             -DCMAKE_CXX_FLAGS="-march=armv8-a" \
+            -DCROSS_COMPILE_ARM=1 \
             -DENABLE_SHARED=off \
             -DHIGH_BIT_DEPTH=ON ../../source
           PATH="$HOME/bin:$PATH" make -j2
