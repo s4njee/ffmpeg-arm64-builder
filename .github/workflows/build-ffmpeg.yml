@@ -132,6 +132,8 @@ jobs:
           PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" \
             -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" \
             -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DCMAKE_C_FLAGS="-march=armv8-a" \
+            -DCMAKE_CXX_FLAGS="-march=armv8-a" \
             -DENABLE_SHARED=off \
             -DHIGH_BIT_DEPTH=ON ../../source
           PATH="$HOME/bin:$PATH" make -j2
@@ -221,6 +223,8 @@ jobs:
           PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" \
             -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" \
             -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DCMAKE_C_FLAGS="-march=armv8-a" \
+            -DCMAKE_CXX_FLAGS="-march=armv8-a" \
             -DENABLE_TESTS=OFF \
             -DENABLE_NASM=on ../aom
           PATH="$HOME/bin:$PATH" make -j2
