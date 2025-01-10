@@ -239,7 +239,6 @@ jobs:
           git -C libvpx pull 2> /dev/null || git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
           cd libvpx
           PATH="$HOME/bin:$PATH" ./configure \
-            --build=aarch64-linux-gnu \
             --prefix="$HOME/ffmpeg_build" \
             --disable-examples \
             --disable-unit-tests \
@@ -270,7 +269,6 @@ jobs:
           git checkout master
           export LD_LIBRARY_PATH+=":/usr/local/lib"
           PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
-            --build=aarch64-linux-gnu \
             --extra-cflags="-I$HOME/ffmpeg_build/include" \
             --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
             --extra-libs="-lpthread -lm" \
