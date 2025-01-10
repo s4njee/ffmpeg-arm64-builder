@@ -28,7 +28,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libdav1d-dev libaom-dev libfdk-aac-dev libvpx-dev libopus-dev libx264-dev libx265-dev zip meson \
             nasm autoconf autogen automake libtool libfreetype6-dev libfontconfig1-dev libfribidi-dev libssl-dev libpulse-dev alsa-source libasound2-dev \
-            build-essential crossbuild-essential-arm64 wget
+            build-essential crossbuild-essential-arm64 wget libass-dev
       - name: Build HDR Stuff
         run: |
           curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -103,42 +103,7 @@ jobs:
           make install
           cd ..
 
-      - name: Build libunibreak
-        run: |
-          git clone --depth 1 https://github.com/adah1972/libunibreak.git
-          cd libunibreak
-          ./autogen.sh
-          PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
-            --prefix="$HOME/ffmpeg_build" \
-            --build=aarch64-linux-gnu \
-            --disable-shared \
-            --enable-static
-          make -j$(nproc)
-          make install
-          cd ..
-      - name: Build Harfbuzz
-        run: |
-          git clone --depth 1 https://github.com/harfbuzz/harfbuzz.git
-          cd harfbuzz
-          mkdir build && cd build
-          meson setup --prefix="$HOME/ffmpeg_build" --default-library=static ..
-          ninja -j1
-          ninja install
-          cd ../..
 
-      - name: Build libass
-        run: |
-          git clone --depth 1 https://github.com/libass/libass.git
-          cd libass
-          ./autogen.sh
-          PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig:$PKG_CONFIG_PATH" ./configure \
-            --prefix="$HOME/ffmpeg_build" \
-            --disable-shared \
-            --enable-static \
-            --build=aarch64-linux-gnu 
-          make -j$(nproc)
-          make install
-          cd ..
 
       - name: Build SVT-AV1
         run: |
